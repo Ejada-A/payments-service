@@ -87,6 +87,12 @@ app.post('/payments/checkout', async (req, res) => {
   }
 });
 
+// Health check endpoint for Kubernetes probes
+app.get('/health', (req, res) => {
+  return res.status(200).json({ status: 'healthy', service: 'payments-service' });
+});
+
 app.listen(PORT, () => {
   console.log(`Payments service running on port ${PORT}`);
 });
+
